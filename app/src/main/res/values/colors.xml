@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_primary">#0288D1</color>
+    <color name="theme_primary_dark">#01579B</color>
+    <color name="theme_primary_light">#B3E5FC</color>
+
+    <color name="theme_accent">#FF5722</color>
+    <color name="theme_accent_dark">#E64A19</color>
+
+    <color name="background_content">#ffffffff</color>
+    <color name="background_toolbar">@color/theme_primary</color>
+    <color name="background_window">#ffe5e5e5</color>
+    <color name="black_transparent">#4d000000</color>
+
+    <color name="navdrawer_background">#cccccc</color>
+
+    <color name="text_light">#FFFFFF</color>
+
+    <color name="item_pressed">#33FF5722</color>
+    <color name="item_selected">#99FF5722</color>
+
+    <color name="fab_normal">@color/theme_accent</color>
+    <color name="fab_pressed">@color/theme_accent_dark</color>
+    <color name="fab_disabled">#9E9E9E</color>
+
+    <color name="text_accent">#cc9E9E9E</color>
+    <color name="text_highlight">#499E9E9E</color>
+    <color name="text_link">#ff718f93</color>
+    <color name="text_normal">#ff51504d</color>
+    <color name="text_dark">#656461</color>
+</resources>

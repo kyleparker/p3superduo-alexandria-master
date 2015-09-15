@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/topLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_window"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
+
+    <it.jaschke.alexandria.camera.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/body_padding_medium"
+        android:layout_weight=".7">
+
+        <it.jaschke.alexandria.camera.GraphicOverlay
+            android:id="@+id/graphic_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </it.jaschke.alexandria.camera.CameraSourcePreview>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        android:layout_weight=".3"
+        android:foreground="@drawable/recyclerview_item_foreground"
+        app:cardCornerRadius="@dimen/cardview_corner_radius"
+        app:cardElevation="@dimen/cardview_elevation"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/body_padding_medium">
+
+            <it.jaschke.alexandria.utils.BezelImageView
+                android:id="@+id/book_cover"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/body_padding_medium"
+                android:layout_marginRight="@dimen/body_padding_medium"
+                android:layout_weight=".3"
+                android:contentDescription="@string/book_cover"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/body_padding_medium"
+                android:layout_marginRight="@dimen/body_padding_medium"
+                android:layout_weight=".7"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/book_title"
+                    style="@style/CardText.Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"/>
+
+                <TextView
+                    android:id="@+id/book_subtitle"
+                    style="@style/CardText.SubTitle.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/book_author"
+                    style="@style/CardText.SubTitle.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            android:src="@drawable/ic_fab_check_enabled"
+            app:backgroundTint="@color/fab_normal"
+            app:borderWidth="0dp"
+            app:elevation="@dimen/elevation_fab_default"
+            app:fabSize="normal"
+            app:rippleColor="@color/fab_pressed"/>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

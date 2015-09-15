@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="CardText" />
+
+    <style name="CardText.Title" parent="@style/TextMedium">
+        <item name="android:autoLink">none</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="CardText.SubTitle" parent="@style/TextMedium">
+        <item name="android:autoLink">none</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="CardText.SubTitle.Small" parent="@style/TextSmall">
+        <item name="android:autoLink">none</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_accent</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="TextHeading" parent="@style/BaseParentText">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColorLink">@color/text_link</item>
+        <item name="android:layout_alignWithParentIfMissing">true</item>
+        <item name="android:autoLink">web|email</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+</resources>

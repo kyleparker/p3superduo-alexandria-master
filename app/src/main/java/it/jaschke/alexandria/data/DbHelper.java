@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "alexandria.db";
 
     public DbHelper(Context context) {
@@ -19,13 +19,14 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         final String SQL_CREATE_BOOK_TABLE = "CREATE TABLE " + AlexandriaContract.BookEntry.TABLE_NAME + " ("+
                 AlexandriaContract.BookEntry._ID + " INTEGER PRIMARY KEY," +
                 AlexandriaContract.BookEntry.TITLE + " TEXT NOT NULL," +
                 AlexandriaContract.BookEntry.SUBTITLE + " TEXT ," +
                 AlexandriaContract.BookEntry.DESC + " TEXT ," +
                 AlexandriaContract.BookEntry.IMAGE_URL + " TEXT, " +
+                AlexandriaContract.BookEntry.URL + " TEXT, " +
+                AlexandriaContract.BookEntry.DELETED + " INTEGER, " +
                 "UNIQUE ("+ AlexandriaContract.BookEntry._ID +") ON CONFLICT IGNORE)";
 
         final String SQL_CREATE_AUTHOR_TABLE = "CREATE TABLE " + AlexandriaContract.AuthorEntry.TABLE_NAME + " ("+
@@ -41,9 +42,9 @@ public class DbHelper extends SQLiteOpenHelper {
                 AlexandriaContract.BookEntry.TABLE_NAME + " (" + AlexandriaContract.BookEntry._ID + "))";
 
 
-        Log.d("sql-statments",SQL_CREATE_BOOK_TABLE);
-        Log.d("sql-statments",SQL_CREATE_AUTHOR_TABLE);
-        Log.d("sql-statments",SQL_CREATE_CATEGORY_TABLE);
+        Log.e("sql-statments",SQL_CREATE_BOOK_TABLE);
+        Log.e("sql-statments",SQL_CREATE_AUTHOR_TABLE);
+        Log.e("sql-statments",SQL_CREATE_CATEGORY_TABLE);
 
         db.execSQL(SQL_CREATE_BOOK_TABLE);
         db.execSQL(SQL_CREATE_AUTHOR_TABLE);
@@ -53,6 +54,11 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (oldVersion < 2) {
+            db.execSQL("ALTER TABLE " + AlexandriaContract.BookEntry.TABLE_NAME + " ADD " + AlexandriaContract.BookEntry.URL + " TEXT");
+        }
+        if (oldVersion < 3) {
+            db.execSQL("ALTER TABLE " + AlexandriaContract.BookEntry.TABLE_NAME + " ADD " + AlexandriaContract.BookEntry.DELETED + " INTEGER");
+        }
     }
 }
