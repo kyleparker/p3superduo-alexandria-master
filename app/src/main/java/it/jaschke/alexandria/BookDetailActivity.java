@@ -35,12 +35,14 @@ import it.jaschke.alexandria.utils.UIUtils;
  */
 public class BookDetailActivity extends BaseActivity {
     private MaterialDialog mProgressLoadingDialog;
+    private MaterialDialog mRemoveBookDialog;
 
     private Book mBook = null;
 
     private String mEAN;
     private String mBookTitle;
     private boolean mProgressLoadingShown = false;
+    private boolean mRemoveBookDialogShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +59,15 @@ public class BookDetailActivity extends BaseActivity {
         if (savedInstanceState != null) {
             mBook = savedInstanceState.getParcelable(Constants.KEY_BOOK);
             mProgressLoadingShown = savedInstanceState.getBoolean(Constants.KEY_LOADING_DIALOG);
+            mRemoveBookDialogShown = savedInstanceState.getBoolean(Constants.KEY_REMOVE_BOOK_DIALOG);
 
             if (mProgressLoadingShown) {
                 mProgressLoadingDialog = DialogUtils.createSpinnerProgressDialog(mActivity, DialogUtils.DEFAULT_TITLE_ID, R.string.dialog_loading, false);
                 mProgressLoadingDialog.show();
+            }
+
+            if (mRemoveBookDialogShown) {
+                showDeleteBookDialog();
             }
         }
         loadBook();
@@ -93,6 +100,7 @@ public class BookDetailActivity extends BaseActivity {
 
         outState.putParcelable(Constants.KEY_BOOK, mBook);
         outState.putBoolean(Constants.KEY_LOADING_DIALOG, mProgressLoadingShown);
+        outState.putBoolean(Constants.KEY_REMOVE_BOOK_DIALOG, mRemoveBookDialogShown);
     }
 
     @Override
@@ -100,6 +108,10 @@ public class BookDetailActivity extends BaseActivity {
         super.onDestroy();
         if (mProgressLoadingDialog != null && mProgressLoadingDialog.isShowing()) {
             mProgressLoadingDialog.dismiss();
+        }
+
+        if (mRemoveBookDialog != null && mRemoveBookDialog.isShowing()) {
+            mRemoveBookDialog.dismiss();
         }
     }
 
@@ -268,7 +280,7 @@ public class BookDetailActivity extends BaseActivity {
     };
 
     private void showDeleteBookDialog() {
-        MaterialDialog dialog = new MaterialDialog.Builder(mActivity)
+        mRemoveBookDialog = new MaterialDialog.Builder(mActivity)
                 .content(mActivity.getString(R.string.dialog_remove_book_message, mBookTitle))
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -281,7 +293,8 @@ public class BookDetailActivity extends BaseActivity {
                 .negativeText(R.string.dialog_cancel)
                 .build();
 
-        dialog.show();
+        mRemoveBookDialog.show();
+        mRemoveBookDialogShown = true;
     }
 
     /**

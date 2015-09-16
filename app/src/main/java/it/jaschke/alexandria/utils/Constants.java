@@ -19,6 +19,7 @@ public class Constants {
     public static final String KEY_BOOK_LIST = "KEY_BOOK_LIST";
     public static final String KEY_ENTER_ISBN_DIALOG = "KEY_ENTER_ISBN_DIALOG";
     public static final String KEY_LOADING_DIALOG = "KEY_LOADING_DIALOG";
+    public static final String KEY_REMOVE_BOOK_DIALOG = "KEY_REMOVE_BOOK_DIALOG";
     public static final String KEY_SEARCH_ISBN = "KEY_SEARCH_ISBN";
 
     public static final String MESSAGE_EVENT = "MESSAGE_EVENT";
