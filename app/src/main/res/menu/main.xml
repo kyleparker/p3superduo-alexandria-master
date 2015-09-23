@@ -4,7 +4,7 @@
       tools:context=".MainActivity">
 
     <item
-        android:id="@+id/menu_backup_db"
+        android:id="@+id/menu_export_db"
         android:orderInCategory="100"
         android:title="backup"
         app:showAsAction="never"/>

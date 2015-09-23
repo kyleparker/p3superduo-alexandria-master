@@ -43,7 +43,7 @@ height to consume the full space available. -->
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:layout_margin="@dimen/activity_margin_half"
+                        android:layout_margin="@dimen/body_padding_medium"
                         android:inputType="text"
                         android:queryHint="@string/content_search_hint"
                         android:saveEnabled="true"/>

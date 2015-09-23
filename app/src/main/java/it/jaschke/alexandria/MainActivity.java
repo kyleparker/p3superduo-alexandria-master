@@ -19,9 +19,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +46,6 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.jaschke.alexandria.data.ProviderUtils;
 import it.jaschke.alexandria.objects.Book;
 import it.jaschke.alexandria.services.BookService;
 import it.jaschke.alexandria.utils.Adapters;
@@ -66,7 +63,7 @@ import it.jaschke.alexandria.utils.UIUtils;
 // NOT IMPLEMENTED: Possible to add swipe-to-delete for the list? -- Cannot use the grid layout
 public class MainActivity extends BaseActivity {
     private Toolbar mToolbar;
-    protected Handler mHandler;
+    private Handler mHandler;
 
     private BroadcastReceiver mMessageReceiver;
 
@@ -160,25 +157,25 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Only show items in the action bar relevant to this screen
-        // if the drawer is not showing. Otherwise, let the drawer
-        // decide what to show in the action bar.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_backup_db:
-                handleBackup();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Only show items in the action bar relevant to this screen
+//        // if the drawer is not showing. Otherwise, let the drawer
+//        // decide what to show in the action bar.
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_export_db:
+//                handleExport();
+//                return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -685,7 +682,10 @@ public class MainActivity extends BaseActivity {
         mEnterIsbnDialog.show();
     }
 
-    private void handleBackup() {
+    /**
+     * For testing purposes - export the db to ensure the data was loaded properly
+     */
+    private void handleExport() {
         Runnable load = new Runnable() {
             public void run() {
                 try {
@@ -729,16 +729,16 @@ public class MainActivity extends BaseActivity {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 } finally {
-                    mActivity.runOnUiThread(backupRunnable);
+                    mActivity.runOnUiThread(handleExportRunnable);
                 }
             }
         };
 
-        Thread thread = new Thread(null, load, "handleBackup");
+        Thread thread = new Thread(null, load, "handleExport");
         thread.start();
     }
 
-    private final Runnable backupRunnable = new Runnable() {
+    private final Runnable handleExportRunnable = new Runnable() {
         public void run() {
             Toast.makeText(mActivity, "done", Toast.LENGTH_LONG).show();
         }
