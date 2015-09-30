@@ -6,15 +6,12 @@ import android.content.DialogInterface;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 /**
+ *
  * Created by kyleparker on 9/14/2015.
  */
 public class DialogUtils {
 
-    public static final int DEFAULT_LAYOUT_ID = -1;
     public static final int DEFAULT_MESSAGE_ID = -1;
-    public static final int DEFAULT_NEGATIVE_TEXT_ID = -1;
-    public static final int DEFAULT_NEUTRAL_TEXT_ID = -1;
-    public static final int DEFAULT_POSITIVE_TEXT_ID = -1;
     public static final int DEFAULT_TITLE_ID = -1;
 
     private static MaterialDialog createProgressDialog(final Activity activity, boolean spinner, int titleId, int messageId,

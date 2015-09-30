@@ -77,8 +77,8 @@ public class SettingsActivity extends BaseActivity {
 
             addPreferencesFromResource(R.xml.preferences);
 
-            Preference connectBallState = findPreference(getString(R.string.settings_clear_library_key));
-            connectBallState.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Preference clearLibrary = findPreference(getString(R.string.settings_clear_library_key));
+            clearLibrary.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     showDeleteBooksDialog();
